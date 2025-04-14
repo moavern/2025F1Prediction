@@ -8,7 +8,7 @@ from sklearn.metrics import mean_absolute_error
 #Enable FastF1 caching
 fastf1.Cache.enable_cache("f1_cache")
 
-#load FastF1 2024 Aus GP race session
+#Load FastF1 2024 Australian GP race session
 session_2024 = fastf1.get_session(2024, 3, "R")
 session_2024.load()
 
@@ -27,26 +27,26 @@ qualifying_2025 = pd.DataFrame({
 
 #Map full names to FastF1 3-letter codes
 driver_mapping = {
-     "Lando Norris": "NOR", "Oscar Piastri": "PIA", "Max Verstappen": "VER", "George Russell": "RUS",
+    "Lando Norris": "NOR", "Oscar Piastri": "PIA", "Max Verstappen": "VER", "George Russell": "RUS",
     "Yuki Tsunoda": "TSU", "Alexander Albon": "ALB", "Charles Leclerc": "LEC", "Lewis Hamilton": "HAM",
     "Pierre Gasly": "GAS", "Carlos Sainz": "SAI", "Lance Stroll": "STR", "Fernando Alonso": "ALO"
 }
 
-qualifying_2025["DriverCode"] = qualifying_2025["Driver"],map(driver_mapping)
+qualifying_2025["DriverCode"] = qualifying_2025["Driver"].map(driver_mapping)
 
-#Merge 2025 Qualifying data with 2024 race data
+#Merge 2025 Qualifying Data with 2024 Race Data
 merged_data = qualifying_2025.merge(laps_2024, left_on="DriverCode", right_on="Driver")
 
-#Use only "QaulifyingTime (s)" as a feature
-X = merged_data[["QualifyingTIme (s)"]]
-y = merged_data[["LapTime (s)"]]
+#Use only "QualifyingTime (s)" as a feature
+X = merged_data[["QualifyingTime (s)"]]
+y = merged_data["LapTime (s)"]
 
 if X.shape[0] == 0:
-    raise ValueError("Dataset is empty after preprocessing. Check data sources.")
+    raise ValueError("Dataset is empty after preprocessing. Check data sources!")
 
-#Train gradient boosting model
+#Train Gradient Boosting Model
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=39)
-model = GradientBoostingRegressor(n_estimator=100, learning_rate=0.1, random_state=39)
+model = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, random_state=39)
 model.fit(X_train, y_train)
 
 #Predict using 2025 qualifying times
@@ -56,7 +56,7 @@ qualifying_2025["PredictedRaceTime (s)"] = predicted_lap_times
 #Rank drivers by predicted race time
 qualifying_2025 = qualifying_2025.sort_values(by="PredictedRaceTime (s)")
 
-#print final predictions
+#Print final predictions
 print("\n🏁 Predicted 2025 Chinese GP Winner 🏁\n")
 print(qualifying_2025[["Driver", "PredictedRaceTime (s)"]])
 
