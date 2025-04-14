@@ -16,6 +16,19 @@ This project explores predictive modeling for Formula 1 race outcomes using the 
 
 ---
 
+## 🚀 Project Overview
+This repository contains a **Gradient Boosting Machine Learning model** that predicts race results based on past performance, qualifying times, and other structured F1 data. The model leverages:
+- FastF1 API for historical race data
+- 2024 race results
+- 2025 qualifying session results
+- Over the course of the season we will be adding additional data to improve our model as well
+- Feature engineering techniques to improve predictions
+
+## 📊 Data Sources
+- **FastF1 API**: Fetches lap times, race results, and telemetry data
+- **2025 Qualifying Data**: Used for prediction
+- **Historical F1 Results**: Processed from FastF1 for training the model
+
 ## ⚙️ How It Works
 
 1. Enable FastF1's cache and load a qualifying & race session.
@@ -74,6 +87,8 @@ python prediction2_olddrivers.py
 - Models are relatively simple—useful for experimentation or as a foundation for more complex ML workflows.
 
 ---
+## 📈 Model Performance
+The Mean Absolute Error (MAE) is used to evaluate how well the model predicts race times. Lower MAE values indicate more accurate predictions.
 
 ## 📈 Future Enhancements
 
@@ -81,6 +96,7 @@ python prediction2_olddrivers.py
 - Visualize prediction performance with confusion matrix and ROC curves
 - Include weather and pit stop data as features
 - Deploy predictions as an API or web app
+- Explore **deep learning** models for improved accuracy
 
 ---
 
