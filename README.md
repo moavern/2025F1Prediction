@@ -5,17 +5,6 @@ This project explores predictive modeling for Formula 1 race outcomes using the 
 
 ---
 
-## 📁 Project Files
-
-| File Name                  | Description |
-|---------------------------|-------------|
-| `prediction1.py`          | Main model: collects FastF1 race/qualifying data, trains a Decision Tree to classify drivers finishing in the top 10. |
-| `prediction2.py`          | Refined version of `prediction1.py`, streamlining data cleaning and focusing on current drivers only. |
-| `prediction2_nochange.py` | Tests the model while leaving some driver identity and result conditions untouched. Serves as a control case. |
-| `prediction2_olddrivers.py` | Focuses on past or historical drivers. Aims to test how the model generalizes beyond current season data. |
-
----
-
 ## 🚀 Project Overview
 This repository contains a **Gradient Boosting Machine Learning model** that predicts race results based on past performance, qualifying times, and other structured F1 data. The model leverages:
 - FastF1 API for historical race data
@@ -65,6 +54,12 @@ python prediction1.py
 python prediction2.py
 python prediction2_nochange.py
 python prediction2_olddrivers.py
+python prediction3.py
+python prediction4.py
+python prediction5.py
+python prediction6.py
+python prediction7.py
+python prediction8.py
 ```
 
 ---
